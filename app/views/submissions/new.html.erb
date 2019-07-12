@@ -1,0 +1,50 @@
+<div class="body-container">
+
+  <div class="container spacer submission-column">
+    <% if @errors %>
+      <% @errors.each do |error|  %>
+      <%= error %>
+      <% end %>
+    <% end %>
+
+    <style media="screen">
+      .field_with_errors {
+        border: 2px red solid;
+      }
+    </style>
+
+    <%= form_for @submission, url: story_section_submissions_path(@section.story, @section), :html => {class: "form-signin"} do |f| %>
+      <h2 class="form-signin-heading">Create Submission</h2>
+      <div class="form-group">
+        <%= f.label :subtitle%>
+        <%= f.text_field :subtitle, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :summary %>
+        <%= f.text_field :summary, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :content %>
+        <%= f.text_area :content, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <div class="form-control custom-control custom-switch">
+          <%= f.check_box :end_story, checked: false, class: "custom-control-input", id: "customSwitch1" %>
+          <%= f.label :end_story, class: "custom-control-label", for: "customSwitch1" %>
+        </div>
+      </div>
+
+
+      <%= f.submit 'Submit', class: "btn btn-primary create-btn" %>
+      <div class="cancel-container">
+        <%= button_to "Cancel", story_section_path(@section.story, @section), method: "get", class: "btn btn-danger btn-sm btn-cancel" %>
+      </div>
+
+    <% end %>
+  </div>
+
+
+</div>

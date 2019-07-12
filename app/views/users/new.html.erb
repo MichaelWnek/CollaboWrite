@@ -1,0 +1,22 @@
+<% if @errors %>
+  <% @errors.each do |e| %>
+    <p><%= e %></p>
+  <% end %>
+<% end %>
+
+<% if current_user %>
+  <p>Logged in as <%= current_user.username %></p>
+<% end %>
+
+<div class="container spacer my-column">
+  <div class="navbar-brand collabowrite-title">CollaboWrite</div>
+  <%= form_for @user, :html => {class: "form-signin my-column"} do |f| %>
+    <h2 class="form-signin-heading">Register</h2>
+    <label for="username" class="sr-only">Username</label>
+    <%= f.text_field :username, placeholder: "Username", class: "form-control" %><br>
+    <label for="password" class="sr-only">Password</label>
+    <%= f.password_field :password, placeholder: "Password", class: "form-control" %>
+    <%= f.password_field :password_confirmation, placeholder: "Confirm Password", class: "form-control" %><br><br>
+    <%= f.submit "Register", class: "btn btn-lg btn-primary btn-block" %>
+  <% end %>
+</div>
